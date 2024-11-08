@@ -22,7 +22,7 @@ function GroceryList() {
   }, [items]);
 
   const fetchItems = async () => {
-    const response = await axios.get('http://localhost:5000/items');
+    const response = await axios.get('https://listing-mern-project.onrender.com/items');
     setItems(response.data);
 
   };
@@ -31,7 +31,7 @@ function GroceryList() {
   const addItem = async () => {
     try {
       if (newItem) {
-        const response = await axios.post('http://localhost:5000/items', { name: newItem });
+        const response = await axios.post('https://listing-mern-project.onrender.com/items', { name: newItem });
         setItems([...items, response.data]);
         let msg = JSON.stringify(response.data.name);
         setNewItem('')
@@ -47,13 +47,13 @@ function GroceryList() {
   };
 
   const toggleBought = async (id, bought) => {
-    const response = await axios.put(`http://localhost:5000/items/${id}`, { bought: !bought });
+    const response = await axios.put(`https://listing-mern-project.onrender.com/items/${id}`, { bought: !bought });
 
     setItems(items.map(item => item._id === id ? response.data : item));
   };
 
   const deleteItem = async (id) => {
-    await axios.delete(`http://localhost:5000/items/${id}`);
+    await axios.delete(`https://listing-mern-project.onrender.com/items/${id}`);
     setItems(items.filter(item => item._id !== id));
     setMessage('Deleted')
     setTimeout(() => {
